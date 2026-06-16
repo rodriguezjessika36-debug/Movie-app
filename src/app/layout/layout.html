@@ -1,0 +1,27 @@
+<header>
+  <nav class="flex items-center gap-6 px-8 py-4 bg-gray-800">
+    <a
+      routerLink="/"
+      routerLinkActive="font-bold underline text-yellow-400"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="text-gray-200 hover:text-white transition-colors"
+    >
+      Inicio
+    </a>
+    <a
+      routerLink="/movies"
+      routerLinkActive="font-bold underline text-yellow-400"
+      class="text-gray-200 hover:text-white transition-colors"
+    >
+      Películas
+    </a>
+  </nav>
+</header>
+
+<main class="min-h-screen bg-gray-50">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="text-center text-sm text-gray-500 py-4 border-t bg-white">
+  &copy; 2026 Catálogo de Películas
+</footer>
