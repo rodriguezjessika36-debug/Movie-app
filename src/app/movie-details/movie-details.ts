@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, computed, input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MoviesService } from '../movies-service';
-import { Movie } from '../movie';
 
 @Component({
   selector: 'app-movie-details',
@@ -10,16 +9,16 @@ import { Movie } from '../movie';
   styleUrl: './movie-details.css',
 })
 export class MovieDetails {
-  movie: Movie | undefined;
+  movieId = input<string>();
+
+  movie = computed(() =>
+    this.moviesService.getMovies().find((m) => m.id === this.movieId())
+  );
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private moviesService: MoviesService
-  ) {
-    const movieId = this.route.snapshot.paramMap.get('movieId');
-    this.movie = this.moviesService.getMovies().find((m) => m.id === movieId);
-  }
+  ) {}
 
   volverAlListado(): void {
     this.router.navigate(['/movies']);
